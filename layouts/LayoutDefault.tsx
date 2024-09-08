@@ -1,11 +1,14 @@
-import "@mantine/core/styles.css";
-import React from "react";
 import { AppShell, Burger, Group, Image, MantineProvider } from "@mantine/core";
+import "@mantine/core/styles.css";
 import { useDisclosure } from "@mantine/hooks";
+import React from "react";
+import { clientOnly } from "vike-react/clientOnly";
 import theme from "./theme.js";
 
 import logoUrl from "../assets/logo.svg";
 import { Link } from "../components/Link";
+
+const Dummy = clientOnly(async () => (await import("../components/Dummy.client.jsx")).Dummy);
 
 export default function LayoutDefault({ children }: { children: React.ReactNode }) {
   const [opened, { toggle }] = useDisclosure();
@@ -24,6 +27,7 @@ export default function LayoutDefault({ children }: { children: React.ReactNode 
               <Image h={50} fit="contain" src={logoUrl} />{" "}
             </a>
           </Group>
+          <Dummy />
         </AppShell.Header>
         <AppShell.Navbar p="md">
           <Link href="/" label="Welcome" />
